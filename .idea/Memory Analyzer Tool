@@ -1,0 +1,18 @@
+This will be an overview of the memory analyzer tool and settings.
+
+Open Source MAT Download:  https://www.eclipse.org/mat/downloads.php
+Must have Java 11 or better JDK.
+In the MemoryAnalyzer.ini, make sure to add two lines showing the full path to the JDK
+    -vm
+    C:\Program Files\Java\jdk-11\bin\javaw.exe
+
+The -vmargs setting for max heap size is -Xmx1024m.  This can be adjusted to accomodate larger heaps but should not exceed the resource limitations of the machine where MAT is running.
+
+The heap dump should be in .hprof format.  See AcquiringHPROFBinaryHeapDumps.txt in this repo.
+
+Leak Suspects Report - Check the heap dump for leak suspects. Report what objects are kept alive and why they are not garbage collected
+Note for Leak Suspects Report - The report created will be in a zip file in the same folder as the heap dump.  It will be <filename>_Leak_Suspects.zip.  Unzip the file and open Index.html in a browser to view the report.
+
+Component Report - Analyze a set of objects for suspected memory issues:  duplicate Strings, empty collections, finalizer, weak references, etc.
+Note for component report - will need to show regex for fully qualified class names of the component.
+
