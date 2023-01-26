@@ -1,0 +1,31 @@
+Acquiring Heap Dumps
+
+
+
+HPROF Binary Heap Dumps
+
+Get Heap Dump on an OutOfMemoryError
+
+One can get a HPROF binary heap dump on an OutOfMemoryError for Sun JVM(1.4.2_12 or higher and 1.5.0_07 or higher), Oracle JVMs,OpenJDK JVMs,HP-UX JVM (1.4.2_11 orhigher) and SAP JVM (since 1.5.0) by setting the following JVMparameter:
+
+-XX:+HeapDumpOnOutOfMemoryError
+
+The heap dump is written to the work directory.
+
+Interactively Trigger a Heap Dump
+
+To get heap dump on demand one can add the following parameter to the JVMand press CTRL + BREAK in the preferred moment:
+
+-XX:+HeapDumpOnCtrlBreak
+
+HPROF agent
+
+To use the HPROF agent to generate a dump on the end of execution, or on SIGQUIT signal use the followingJVM parameter:
+
+-agentlib:hprof=heap=dump,format=b
+
+Alternatively, other tools can be used to acquire a heap dump:
+• jmap -dump:format=b,file=<filename.hprof> <pid>
+• jcmd <pid> GC.heap_dump <filename.hprof>
+•JConsole (see sample usage in Basic Tutorial)
+•Memory Analyzer (see bottom of page)
